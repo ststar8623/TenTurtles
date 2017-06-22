@@ -25,7 +25,7 @@
 
 ## Requirements
 
-- Node 6.4.x
+- Node 8.0.x
 - Express 4.15.x
 - React 15.4.x
 - Mongoose 4.8.x
