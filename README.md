@@ -4,10 +4,10 @@
 
 ## Team
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Alex Chang
+  - Yermek Alchnov
+  - Michael Chiang
+  - Steven Leung
 
 ## Table of Contents
 
@@ -25,11 +25,11 @@
 
 ## Requirements
 
-- Node 6.4.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 8.0.x
+- Express 4.15.x
+- React 15.4.x
+- Mongoose 4.8.x
+- MongoDB 3.4
 
 ## Development
 
@@ -37,10 +37,11 @@
 
 From within the root directory:
 
-```sh
-npm install -g bower
+```
 npm install
-bower install
+> npm run react-dev
+> npm run server-dev
+> npm run db-start
 ```
 
 ### Roadmap
