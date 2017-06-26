@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const Promise = require('bluebird');
 const request = Promise.promisify(require('request'));
+const recipe = require('./recipeRefactor.js');
 
 const app = express();
 
@@ -22,8 +23,11 @@ app.post('/search', (req, res) => {
     }
   };
   request(options).then((result) => {
-    let item = JSON.parse(result.body);
-    console.log(item.hits[0].recipe);
+    return JSON.parse(result.body).hits;
+  }).then(recipes => {
+    return recipe.refactor(recipes);
+  }).then(result => {
+    console.log('result: ', result);
   });
 });
 
