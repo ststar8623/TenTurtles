@@ -13,7 +13,6 @@ class App extends React.Component {
   }
 
   handleChange(event) {
-    console.log(event.target.value);
     this.setState({
       item: event.target.value
     })
