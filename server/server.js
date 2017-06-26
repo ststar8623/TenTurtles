@@ -10,21 +10,25 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.post('/search', (req, res) => {
   let item = req.body.item;
+  console.log('item ', item);
   let appID = 'f4b3c424';
   let appKey = 'f657bcbb2f43a3a73f4c251076307c3b';
-  let url = 'https://api.edamam.com/search/?q=';
+  let url = 'https://api.edamam.com/search?q=' + item;
   let options = {
-    method: 'GET',
-    uri: url + item + '&app_id=' + appID + '&app_key=' + appKey,
-    gzip: true
+    url: url,
+    headers: {
+      'app_id': appID,
+      'app_key': appKey
+    }
   };
-  request(options, (err, res, body) => {
-    console.log(body);
-  }).then((result) => {
-    console.log(result);
-  })
+  request(options).then((result) => {
+    let item = JSON.parse(result.body);
+    console.log(item.hits[0].recipe);
+  });
 });
 
 app.listen(3000, function() {
   console.log('Connection established.  Listening on port 3000!');
-})
+});
+
+// curl "https://api.edamam.com/search?q=chicken&app_idf4b3c424=&app_key=f657bcbb2f43a3a73f4c251076307c3b&from=0&to=3&calories=gte%20591,%20lte%20722&health=alcohol-free"
