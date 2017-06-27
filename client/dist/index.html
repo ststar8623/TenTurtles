@@ -43,7 +43,7 @@
 
   window.fbAsyncInit = function() {
   FB.init({
-    appId      : 'APP ID HERE',
+    appId      : 'API key',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -99,7 +99,12 @@
         console.log('User cancelled login or did not fully authorize.');
       }
     });
+  }
 
+  function logout() {
+    FB.logout(function(response) {
+       console.log('Person is now logged out');
+    });
   }
 
 </script>
@@ -119,6 +124,7 @@
 -->
 
 <button onclick="login()">Login</button>
+<button onclick="logout()">Log Out</button>
 
 <div id="status"></div>
 
