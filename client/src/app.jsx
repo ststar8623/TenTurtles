@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Sidebar from 'react-sidebar';
+import { FormControl, Button } from 'react-bootstrap';
 import $ from 'jquery';
+import Drop from './components/nav.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +19,7 @@ class App extends React.Component {
   handleChange(event) {
     this.setState({
       item: event.target.value
-    })
+    });
   }
 
   search() {
@@ -35,8 +39,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <input type="text" onChange={this.handleChange} />
-        <input type="button" value="search" onClick={this.search} />
+        <Drop />
+        <form>
+          <FormControl bsSize="small" type="text" placeholder="Search here" onChange={this.handleChange} />
+          <Button type="button" bsSize="small" onClick={this.search}>Submit</Button>
+        </form>
       </div>
     )
   }
