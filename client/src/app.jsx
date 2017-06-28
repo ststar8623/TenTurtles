@@ -35,6 +35,20 @@ class App extends React.Component {
     });
   }
 
+  // search() {
+  //   console.log('click');
+  //   $.ajax({
+  //     url: 'http://138.68.58.133/pairing',
+  //     type: 'POST',
+  //     data: {
+  //       ingredients: [this.state.item]
+  //     },
+  //     success: function(data) {
+  //       console.log('success', data);
+  //     }
+  //   });
+  // }
+
   render() {
     return (
       <Grid>
