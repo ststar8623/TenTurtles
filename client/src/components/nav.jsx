@@ -1,39 +1,43 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { DropdownButton, MenuItem, Nav } from 'react-bootstrap';
+import { Button, Collapse, Well, Checkbox } from 'react-bootstrap';
 
 class Drop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      preferences: [ 'Dairy-Free', 'Gluten-Free', 'Egg-Free', 'Peanut-Free', 'Tree-Nut-Free', 'Soy-Free', 'Fish-Free', 'Shellfish-Free' ]
     };
   }
 
   render() {
     return (
-      <Nav pullRight>
-        <DropdownButton pullRight title="Preferences" id="split-button-pull-right">
-          {
-            this.state.preferences.map(pref => {
-              return (
-                <MenuItem disabled key={pref}>{pref}</MenuItem>
-              );
-            })
-          }
-        </DropdownButton>
-      </Nav>
+      <div>
+        <Button style={styles.dropBox} onClick={ () => this.setState({ open: !this.state.open })}>
+          preferences
+        </Button>
+        <Collapse in={this.state.open}>
+          <div>
+            <Well>
+              <Checkbox inline type="checkbox">Diary-Free</Checkbox>
+              <Checkbox inline type="checkbox">Gluten-Free</Checkbox>
+              <Checkbox inline type="checkbox">Egg-Free</Checkbox>
+              <Checkbox inline type="checkbox">Peanut-Free</Checkbox>
+              <Checkbox inline type="checkbox">Tree-Nut-Free</Checkbox>
+              <Checkbox inline type="checkbox">Soy-Free</Checkbox>
+              <Checkbox inline type="checkbox">Fish-Free</Checkbox>
+              <Checkbox inline type="checkbox">Shellfish-Free</Checkbox>
+            </Well>
+          </div>
+        </Collapse>
+      </div>
     )
   }
 }
 
-export default Drop;
+let styles = {
+  dropBox: {
+    padding: '6px 10px',
+    fontSize: '12px'
+  }
+}
 
-{/*<MenuItem disabled eventKey="Diary-Free">Diary-Free</MenuItem>
-<MenuItem disabled eventKey="Gluten-Free">Gluten-Free</MenuItem>
-<MenuItem disabled eventKey="Egg-Free">Egg-Free</MenuItem>
-<MenuItem disabled eventKey="Peanut-Free">Peanut-Free</MenuItem>
-<MenuItem disabled eventKey="Tree-Nut-Free">Tree-Nut-Free</MenuItem>
-<MenuItem disabled eventKey="Soy-Free">Soy-Free</MenuItem>
-<MenuItem disabled eventKey="Fish-Free">Fish-Free</MenuItem>
-<MenuItem disabled eventKey="Shellfish-Free">Shellfish-Free</MenuItem>*/}
+export default Drop;

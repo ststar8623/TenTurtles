@@ -13,6 +13,7 @@
     "db-start": "mongod --dbpath ./database/data/db"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.0",
@@ -21,8 +22,8 @@
     "react": "^15.4.2",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.4.2",
-    "react-sidebar": "^2.3.2",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",

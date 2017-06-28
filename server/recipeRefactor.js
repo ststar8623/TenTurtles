@@ -1,4 +1,4 @@
-const refactor = function(recipes) {
+const refactor = recipes => {
   return recipes.map(item => {
     return {
       uri: item.recipe.uri,
@@ -17,4 +17,6 @@ const refactor = function(recipes) {
   });
 };
 
-module.exports.refactor = refactor;
+module.exports = {
+  refactor: refactor,
+}
