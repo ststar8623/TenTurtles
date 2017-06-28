@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { FormControl, Button, Grid } from 'react-bootstrap';
 import $ from 'jquery';
 import Drop from './components/nav.jsx';
-
+import Upload from './components/upload.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class App extends React.Component {
       <Grid style={styles.container}>
         <h1 style={styles.h1}>App 4 Food</h1>
         <Drop />
+        <Upload />
         <form style={styles.form}>
           <FormControl style={styles.inputBox} bsSize="small" type="text" placeholder="Search here" onChange={this.handleChange} />
           <Button type="button" bsSize="small" onClick={this.search}>Submit</Button>
