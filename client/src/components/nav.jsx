@@ -11,7 +11,7 @@ class Drop extends React.Component {
   render() {
     return (
       <div>
-        <Button onClick={ () => this.setState({ open: !this.state.open })}>
+        <Button style={styles.dropBox} onClick={ () => this.setState({ open: !this.state.open })}>
           preferences
         </Button>
         <Collapse in={this.state.open}>
@@ -30,6 +30,13 @@ class Drop extends React.Component {
         </Collapse>
       </div>
     )
+  }
+}
+
+let styles = {
+  dropBox: {
+    padding: '6px 10px',
+    fontSize: '12px'
   }
 }
 

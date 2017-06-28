@@ -38,6 +38,7 @@ app.post('/search', (req, res) => {
       return axios.post('http://138.68.58.133/pairing', {"ingredients": ingredient}).then(result => {
         return result.data;
       });
+
     });
   })
   .then(wines => {
