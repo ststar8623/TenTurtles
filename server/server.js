@@ -34,18 +34,15 @@ app.post('/clarifai', (req, res) => {
     if (error) {
       console.log(error);
     } else {
-      console.log('response: ', response);
       return response;
     }
   })
   .then(result => {
-    console.log('resultssst: ', result.outputs[0].data);
     return result.outputs[0].data.concepts.map(item => {
       return item.name;
     });
   })
   .then(imageText => {
-    console.log('imageText ', imageText);
     query.apiQuery({item: imageText[0]}, res);
   });
 
