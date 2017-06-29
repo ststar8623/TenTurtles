@@ -70,6 +70,7 @@ class App extends React.Component {
 
   render() {
     return (
+
       <Grid style={styles.container}>
         <h1 style={styles.h1}>App 4 Food</h1>
         <Drop handlePreferences={this.handlePref.bind(this)}/>
@@ -89,7 +90,7 @@ let styles = {
     textAlign: 'center'
   },
   container: {
-    width: '500px',
+    width: '750px',
     padding: '25px'
   },
   form: {
