@@ -1,8 +1,5 @@
 const refactor = wines => {
-  // console.log('wines::::: ', wines);
   let random = Math.floor(Math.random() * (wines.length - 2)) + 1;
-  // console.log('wine ', wines);
-  console.log('wine name ', wines[random].Name);
   return {
     name: wines[random].Name,
     url: wines[random].Url,
