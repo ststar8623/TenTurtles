@@ -1,39 +1,73 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { DropdownButton, MenuItem, Nav } from 'react-bootstrap';
+import { Button, Collapse, Well, Checkbox } from 'react-bootstrap';
 
 class Drop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      preferences: [ 'Dairy-Free', 'Gluten-Free', 'Egg-Free', 'Peanut-Free', 'Tree-Nut-Free', 'Soy-Free', 'Fish-Free', 'Shellfish-Free' ]
+      'vegetarian': false,
+      'vegan': false,
+      'dairy-free': false,
+      'egg-free': false,
+      'peanut-free': false,
+      'alcohol-free': false,
+      'shellfish-free': false,
+      preferences: ['vegetarian', 'vegan', 'dairy-free', 'egg-free', 'peanut-free', 'alcohol-free', 'shellfish-free'],
+      open: false
+
+      // preferences: [
+      // { preference: 'Vegetarian', marked: false }, 
+      // { preference: 'Vegan', marked: false }, 
+      // { preference: 'Dairy-Free', marked: false }, 
+      // { preference: 'Egg-Free', marked: false }, 
+      // { preference: 'Peanut-Free', marked: false }, 
+      // { preference: 'Alcohol-Free', marked: false }, 
+      // { preference: 'Shellfish-Free', marked: false }, ]
     };
+  }
+
+  markedPref(pref) {
+    let selected = pref;
+    console.log('checkbox click works', this.state[selected]);
+    let obj = {};
+    obj[selected] = !this.state[selected];
+    this.setState(obj, () => {this.props.handlePreferences(this.state)});
   }
 
   render() {
     return (
-      <Nav pullRight>
-        <DropdownButton pullRight title="Preferences" id="split-button-pull-right">
-          {
-            this.state.preferences.map(pref => {
-              return (
-                <MenuItem disabled key={pref}>{pref}</MenuItem>
-              );
-            })
-          }
-        </DropdownButton>
-      </Nav>
+      <div>
+        <Button style={styles.dropBox} onClick={ () => this.setState({ open: !this.state.open })}>
+          preferences
+        </Button>
+        <Collapse in={this.state.open}>
+          <div>
+            <Well>
+            {this.state.preferences.map((pref, index) => {
+              return (<Checkbox key={index} inline type="checkbox" onClick={() => this.markedPref(pref)}>{pref}</Checkbox>)
+            })}
+{/*            <Well>
+              <Checkbox inline type="checkbox">Vegetarian</Checkbox>
+              <Checkbox inline type="checkbox">Vegan</Checkbox>
+              <Checkbox inline type="checkbox">Dairy-Free</Checkbox>
+              <Checkbox inline type="checkbox">Egg-Free</Checkbox>
+              <Checkbox inline type="checkbox">Peanut-Free</Checkbox>
+              <Checkbox inline type="checkbox">Alcohol-Free</Checkbox>
+              <Checkbox inline type="checkbox">Shellfish-Free</Checkbox>
+            </Well>*/}
+            </Well>
+          </div>
+        </Collapse>
+      </div>
     )
   }
 }
 
-export default Drop;
+let styles = {
+  dropBox: {
+    padding: '6px 10px',
+    fontSize: '12px'
+  }
+}
 
-{/*<MenuItem disabled eventKey="Diary-Free">Diary-Free</MenuItem>
-<MenuItem disabled eventKey="Gluten-Free">Gluten-Free</MenuItem>
-<MenuItem disabled eventKey="Egg-Free">Egg-Free</MenuItem>
-<MenuItem disabled eventKey="Peanut-Free">Peanut-Free</MenuItem>
-<MenuItem disabled eventKey="Tree-Nut-Free">Tree-Nut-Free</MenuItem>
-<MenuItem disabled eventKey="Soy-Free">Soy-Free</MenuItem>
-<MenuItem disabled eventKey="Fish-Free">Fish-Free</MenuItem>
-<MenuItem disabled eventKey="Shellfish-Free">Shellfish-Free</MenuItem>*/}
+export default Drop;
