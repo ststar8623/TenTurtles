@@ -29,7 +29,7 @@ app.post('/clarifai', (req, res) => {
   });
 
   clarifai.models
-  .predict(Clarifai.GENERAL_MODEL, imageUrl)
+  .predict(Clarifai.FOOD_MODEL, imageUrl)
   .then((response, error) => {
     if (error) {
       console.log(error);
