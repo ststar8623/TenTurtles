@@ -28,7 +28,8 @@ class App extends React.Component {
     });
   }
 
-  search() {
+  search(e) {
+    e.preventDefault();
     console.log('click');
     let passPref = [];
     for (let key in this.state.prefer) {
@@ -75,7 +76,7 @@ class App extends React.Component {
         <Upload setPairings={this.setPairings.bind(this)}/>
         <form style={styles.form}>
           <FormControl style={styles.inputBox} bsSize="small" type="text" placeholder="Search here" onChange={this.handleChange} />
-          <Button type="button" bsSize="small" onClick={this.search}>Submit</Button>
+          <Button type="submit" bsSize="small" onClick={this.search}>Submit</Button>
         </form>
         <PairingList pairs={this.state.pairs} />
       </Grid>
