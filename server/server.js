@@ -43,7 +43,8 @@ app.post('/clarifai', (req, res) => {
     });
   })
   .then(imageText => {
-    query.apiQuery(imageText[0], res);
+    // console.log(imageText);
+    query.apiQuery({item: imageText[0]}, res);
   });
 
 });
