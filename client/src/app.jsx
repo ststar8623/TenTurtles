@@ -68,10 +68,10 @@ class App extends React.Component {
       <Grid style={styles.container}>
         <h1 style={styles.h1}>🍷🍅🍉🍊🍌🍍🍺🍲🍦</h1>
         <Row>
-          <form style={styles.form}>
             <Col xs={2}>
               <Upload setPairings={this.setPairings.bind(this)} preferences={this.state.prefer}/>
             </Col>
+            <form style={styles.form}>
             <Col xs={9}>
               <FormControl style={styles.inputBox} bsSize="large" type="text" placeholder="Search here" onChange={this.handleChange} />
             </Col>
