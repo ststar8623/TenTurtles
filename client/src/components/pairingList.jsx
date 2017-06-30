@@ -8,16 +8,16 @@ class PairingList extends React.Component {
   }
 
   render() {
-    let pairings = _.zip(this.props.pairs.finalRecipes, this.props.pairs.finalWines)
+    let pairings = _.zip(this.props.pairs.finalRecipes, this.props.pairs.finalWines, this.props.pairs.finalBeers);
     return (
       <div>
       {
         pairings.map((pair, index) => {
-          return <PairingListEntry key={index} pair={pair} />
+          return <PairingListEntry key={index} pair={pair}/>
         })
       }
       </div>
-    )
+    );
   }
 }
 

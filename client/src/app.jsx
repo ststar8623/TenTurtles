@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { FormControl, Button, Grid } from 'react-bootstrap';
+import { FormControl, Button, Grid, Row, Col, Image } from 'react-bootstrap';
 import $ from 'jquery';
 import Drop from './components/nav.jsx';
 import Upload from './components/upload.jsx';
 import PairingList from './components/pairingList.jsx';
+const prefHelper = require('../../server/preferenceRefactor');
 
 
 class App extends React.Component {
@@ -15,7 +16,8 @@ class App extends React.Component {
       prefer: '',
       pairs: {
         finalRecipes: [],
-        finalWines: []
+        finalWines: [],
+        finalBeers: []
       }
     };
     this.search = this.search.bind(this);
@@ -23,6 +25,7 @@ class App extends React.Component {
   }
 
   handleChange(event) {
+    event.preventDefault();
     this.setState({
       item: event.target.value
     });
@@ -31,15 +34,7 @@ class App extends React.Component {
   search(e) {
     e.preventDefault();
     console.log('click');
-    let passPref = [];
-    for (let key in this.state.prefer) {
-      if (key !== 'open' && key !== 'preferences') {
-        console.log('true or false', this.state.prefer[key]);
-        if (this.state.prefer[key] === true) {
-          passPref.push(key);
-        }
-      }
-    }
+    let passPref = prefHelper.preferences(this.state.prefer);
     console.log('passPref', passPref);
     $.ajax({
       url: '/search',
@@ -65,21 +60,44 @@ class App extends React.Component {
     console.log('working appjsx');
     this.setState({
       prefer: childState
-    }, () => {console.log(this.state)});
+    });
   }
 
   render() {
     return (
-
       <Grid style={styles.container}>
-        <h1 style={styles.h1}>App 4 Food</h1>
-        <Drop handlePreferences={this.handlePref.bind(this)}/>
-        <Upload setPairings={this.setPairings.bind(this)}/>
-        <form style={styles.form}>
-          <FormControl style={styles.inputBox} bsSize="small" type="text" placeholder="Search here" onChange={this.handleChange} />
-          <Button type="submit" bsSize="small" onClick={this.search}>Submit</Button>
-        </form>
-        <PairingList pairs={this.state.pairs} />
+        <h1 style={styles.h1}>🍷🍅🍉🍊🍌🍍🍺🍲🍦</h1>
+        <Row>
+            <Col xs={2}>
+              <Upload setPairings={this.setPairings.bind(this)} preferences={this.state.prefer}/>
+            </Col>
+            <form style={styles.form}>
+            <Col xs={9}>
+              <FormControl style={styles.inputBox} bsSize="large" type="text" placeholder="Search here" onChange={this.handleChange} />
+            </Col>
+            <Col xs={1}>
+              <input src="http://www.clker.com/cliparts/Y/x/X/j/U/f/search-button-without-text-hi.png" style={styles.inputBtn} type="image" onClick={this.search}></input>
+            </Col>
+          </form>
+        </Row>
+
+        <br />
+
+        <Row>
+          <Col xs={12}>
+            <Drop handlePreferences={this.handlePref.bind(this)}/>
+          </Col>
+
+        </Row>
+
+        <hr />
+
+        <Row>
+          <Col xs={12}>
+            <PairingList pairs={this.state.pairs} />
+          </Col>
+        </Row>
+
       </Grid>
     )
   }
@@ -87,19 +105,25 @@ class App extends React.Component {
 
 let styles = {
   h1: {
+    fontSize: '85px',
     textAlign: 'center'
   },
   container: {
-    width: '750px',
-    padding: '25px'
+    width: '100%',
+    padding: '10px',
   },
   form: {
-    padding: '10px'
   },
   inputBox: {
-    marginRight: '15px',
-    display: 'inline-block',
-    width: '80%'
+    fontSize: '35px',
+    marginLeft: '-35px',
+    width: '100%',
+    height: '75px'
+  },
+  inputBtn: {
+    marginLeft: '-30px',
+    width: '75px',
+    height: '75px'
   }
 };
 
