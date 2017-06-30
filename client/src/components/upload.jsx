@@ -39,6 +39,17 @@ export default class Upload extends React.Component {
         this.props.setPairings(data);
       }
     });
+    $.ajax({
+      url: '/saveImage',
+      method: 'POST',
+      data: {
+        item: this.state.selectedImage,
+        url: this.state.uploadedFileCloudinaryUrl
+      },
+      success: data => {
+        console.log('image saved');
+      }
+    })
   }
 
   open() {
