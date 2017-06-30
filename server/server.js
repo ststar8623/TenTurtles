@@ -77,8 +77,12 @@ app.get('/images', (req, res) => {
     // let urls = _.pluck(results, 'url');
     // let captions = _.pluck(results, 'caption');
     res.send(results);
-
   });
+})
+
+app.post('/saveImage', (req, res) => {
+  let data = req.body
+  new db.Image({url: data.url, caption: data.item}).save()
 })
 
 app.listen(3000, function() {
