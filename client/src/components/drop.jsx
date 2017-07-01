@@ -21,6 +21,7 @@ class Drop extends React.Component {
     let selected = pref;
     let obj = {};
     obj[selected] = !this.state[selected];
+    //
     this.setState(obj, () => {this.props.handlePreferences(this.state)});
   }
 

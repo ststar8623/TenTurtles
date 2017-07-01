@@ -57,6 +57,7 @@ export default class Upload extends React.Component {
   }
 
   handleChange(e, food) {
+    //
     this.setState({ selectedImage: e.target.value }, this.close);
 
   }
