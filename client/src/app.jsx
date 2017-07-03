@@ -7,7 +7,7 @@ import Upload from './components/upload.jsx';
 import PairingList from './components/pairingList.jsx';
 import ImageCarousel from './components/imageCarousel.jsx';
 import { Line, Circle } from 'rc-progress';
-const prefHelper = require('../../server/preferenceRefactor');
+const helpers = require('../../server/helpers');
 
 
 class App extends React.Component {
@@ -42,7 +42,7 @@ class App extends React.Component {
 
   search(e) {
     e.preventDefault();
-    let passPref = prefHelper.preferences(this.state.prefer);
+    let passPref = helpers.preferences(this.state.prefer);
     this.setState({ percent: 10 })
     setTimeout(function(){ this.setState({ percent: 10 }) }.bind(this), 600);
     setTimeout(function(){ this.setState({ percent: 25 }) }.bind(this), 900);
