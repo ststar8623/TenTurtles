@@ -8,8 +8,7 @@ import PairingList from './components/pairingList.jsx';
 import ImageCarousel from './components/imageCarousel.jsx';
 import { Line, Circle } from 'rc-progress';
 const helpers = require('../../server/helpers');
-
-
+import Background from '../dist/433ce5036a9f794f22d48bccd2208b0d.jpg';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -44,11 +43,11 @@ class App extends React.Component {
     e.preventDefault();
     let passPref = helpers.preferences(this.state.prefer);
     this.setState({ percent: 10 })
-    setTimeout(function(){ this.setState({ percent: 10 }) }.bind(this), 600);
-    setTimeout(function(){ this.setState({ percent: 25 }) }.bind(this), 900);
-    setTimeout(function(){ this.setState({ percent: 40 }) }.bind(this), 1200);
-    setTimeout(function(){ this.setState({ percent: 60 }) }.bind(this), 1500);
-    setTimeout(function(){ this.setState({ percent: 80 }) }.bind(this), 1800);
+    setTimeout(function(){ if(this.state.percent != 100){this.setState({ percent: 10 })} }.bind(this), 500);
+    setTimeout(function(){ if(this.state.percent != 100){this.setState({ percent: 25 })} }.bind(this), 1000);
+    setTimeout(function(){ if(this.state.percent != 100){this.setState({ percent: 40 })} }.bind(this), 1500);
+    setTimeout(function(){ if(this.state.percent != 100){this.setState({ percent: 60 })} }.bind(this), 2000);
+    setTimeout(function(){ if(this.state.percent != 100){this.setState({ percent: 80 })} }.bind(this), 3000);
     $.ajax({
       url: '/search',
       method: 'POST',
@@ -90,7 +89,8 @@ class App extends React.Component {
   render() {
     return (
       <Grid style={styles.container}>
-          <Line percent={this.state.percent} strokeWidth="2" strokeColor="#D3D3D3" />
+        <section style={ sectionStyle }>
+
           <h1 style={styles.h1}>🍷🍅🍉🍊🍌🍍🍺🍲🍦</h1>
           <Row>
               <Col xs={2}>
@@ -104,6 +104,12 @@ class App extends React.Component {
                 <input src="http://www.clker.com/cliparts/Y/x/X/j/U/f/search-button-without-text-hi.png" style={styles.inputBtn} type="image" onClick={this.search}></input>
               </Col>
             </form>
+          </Row>
+
+          <br />
+
+          <Row>
+            <Line percent={this.state.percent} strokeWidth="2" strokeColor="#D3D3D3" />
           </Row>
 
           <br />
@@ -127,13 +133,21 @@ class App extends React.Component {
 
           <Row>
             <Col xs={12}>
-              <PairingList pairs={this.state.pairs} />
+              <PairingList pairs={this.state.pairs} style={styles.card} />
             </Col>
           </Row>
+        </section>
       </Grid>
-    )
+    );
   }
 }
+
+var sectionStyle = {
+  width: "100%",
+  height: "100%",
+  // backgroundImage: `url(${Background})`,
+  // backgroundSize: 'cover',
+};
 
 let styles = {
   h1: {
@@ -141,8 +155,14 @@ let styles = {
     textAlign: 'center'
   },
   container: {
+    backgroundImage: `url(${Background})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundSize: 'cover',
     width: '100%',
-    padding: '10px',
+    padding: '75px',
+  },
+  card : {
+    backgroundColor: 'rgba(215, 217, 221, .85)'
   },
   form: {
   },
@@ -150,7 +170,8 @@ let styles = {
     fontSize: '35px',
     marginLeft: '-35px',
     width: '100%',
-    height: '75px'
+    height: '75px',
+    backgroundColor: 'rgba(215, 217, 221, .85)'
   },
   inputBtn: {
     marginLeft: '-30px',
